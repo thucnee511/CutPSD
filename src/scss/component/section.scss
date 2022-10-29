@@ -1,143 +1,170 @@
 .section {
-  h1 {
-    color: $secondary-color;
-
-    &::after {
-      content: ".";
-      background: $primary-gradient;
-      @include background-clip-text;
-      color: transparent;
-    }
-  }
-
-  .section__content {
-    @include flex(row, space-between, center);
+  .section_child {
     margin-bottom: 5rem;
 
-    .text-content {
-      max-width: 620px;
-
-      h1 {
-        margin-bottom: 3rem;
-      }
-      p {
-        line-height: 3rem;
+    h1 {
+      &::after {
+        content: ".";
+        font-size: 10rem;
+        font-weight: 700;
+        color: transparent;
+        background: $primary-gradient;
+        @include background-clip-text;
       }
     }
 
-    .image-content {
-      position: relative;
+    &:nth-child(1),
+    &:nth-child(2) {
+      .section__content {
+        @include flex(row, space-between, center);
 
-      .front-image {
-        position: absolute;
-        z-index: 1;
-
-        &:nth-child(2) {
-          top: 10rem;
-          left: 15rem;
+        .text-content {
+          width: 60rem;
         }
 
-        &:nth-child(1) {
-          top: 5rem;
-          right: 15rem;
+        .image-content {
+          width: 60rem;
+          position: relative;
+
+          .front-image {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+          }
         }
       }
     }
 
     &:nth-child(3) {
-      margin-top: 10rem;
-      @include flex(column, center, center);
+      .section__content {
+        @include flex(column, center, center);
 
-      h1 {
-        margin-bottom: 10rem;
-      }
+        .text-content {
+          margin-bottom: 5rem;
+        }
 
-      .card-content {
-        @include flex(row, center, center);
+        .card-content {
+          @include flex(row, center, center);
 
-        .card {
-          max-width: 35rem;
-          margin: 0 2rem;
-          line-height: 3rem;
+          .card {
+            max-width: 42rem;
 
-          .card-msg {
-            border: 2px solid #e0e0e0;
-            padding: 1rem;
-            margin-bottom: 3rem;
-            position: relative;
-            p {
-              color: rgba(0, 0, 0, 0.4);
-              &:nth-child(2) {
-                font-weight: 700;
-                background: $primary-gradient;
-                color: transparent;
-                @include background-clip-text;
-                font-size: 1.8rem;
-              }
-            }
-
-            &::after {
-              content: "";
-              position: absolute;
-              top: 96%;
-              left: 1.8rem;
-              width: 2rem;
-              height: 2rem;
-              background-color: white;
-              border-left: 2px solid #e0e0e0;
-              border-bottom: 2px solid #e0e0e0;
-              transform: rotate(-45deg);
-            }
-          }
-
-          .card-avt {
-            @include flex(row, flex-start, center);
-
-            .avt--img {
-              width: 6rem;
-              height: 6rem;
-
-              img {
-                display: block;
-                width: 100%;
-                height: 100%;
-              }
-            }
-
-            .avt-info {
-              margin-left: 1rem;
-              line-height: 2rem;
-              .info--name {
-                color: rgba(0, 0, 0, 0.7);
-              }
-              .info-title {
-                color: rgba(0, 0, 0, 0.4);
-              }
-            }
-          }
-          &:hover {
             .card-msg {
-              transform: translateY(-5rem) ;
-              box-shadow: 0 7px 20px 5px rgba(0, 0, 0, 0.1) ;
+              border: 1px solid #e0e0e0;
+              margin-bottom: 1.5rem;
+              padding: 1.5rem;
+              margin: 1rem;
+              position: relative;
+              transition: all ease-in-out 0.3s;
+
+              &::after {
+                content: "";
+                position: absolute;
+                display: block;
+                width: 1rem;
+                height: 1rem;
+                border-bottom: 1px solid #e0e0e0;
+                border-right: 1px solid #e0e0e0;
+                background-color: white;
+                transform: rotate(45deg);
+                top: 97.5%;
+              }
+
+              p {
+                line-height: 2rem;
+
+                &:nth-child(2) {
+                  // font-size: 1.8rem ;
+                  padding-top: 1rem;
+                  font-weight: 700;
+                  color: transparent;
+                  background: $primary-gradient;
+                  @include background-clip-text;
+                }
+              }
             }
+
+            .card-avt {
+              padding: 0.5rem;
+              @include flex(row, flex-start, center);
+
+              .avt-info {
+                padding-left: 1.5rem;
+
+                .info-title {
+                  color: rgba(0, 0, 0, 0.4);
+                }
+              }
+            }
+          }
+        }
+
+        .card:hover {
+          .card-msg {
+            box-shadow: 0 10px 20px 10px #e0e0e0;
+            transform: translateY(-25%);
+            border: none;
+            transition: all ease-in-out 0.3s;
           }
         }
       }
     }
-  }
-}
 
-@media (max-width: 1160px) {
-  .section__content {
-    margin-bottom: 0 !important;
-    &:nth-child(1),
-    &:nth-child(2) {
-      @include flex-im(column, center, center);
-    }
-    .text-content,
-    .image-content {
-      margin-bottom: 10rem;
-      max-width: 80% !important;
+    &:nth-child(4) {
+      margin-top: 15rem;
+      position: relative;
+
+      .section__bg {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        bottom: 0;
+        z-index: -2;
+        background: $primary-gradient;
+      }
+
+      .section__content {
+        position: relative;
+        @include flex(row, space-between, center);
+        padding: 10rem 0;
+
+        .image__content {
+          position: absolute;
+          top: 0;
+          left: 50%;
+          transform: translate(-50%, -85px);
+        }
+
+        .left__content,
+        .right__content {
+          width: 36rem;
+          color: #fafafa;
+
+          .top__content,
+          .bottom__content {
+            @include flex(row, flex-start, flex-start);
+            padding: 2rem 0 ;
+            .text__content {
+              width: 28rem;
+                p {
+                margin-top: 1rem;
+                opacity: 0.5;
+                line-height: 2rem;
+              }
+            }
+
+            .icon{
+                font-size: 5rem ;
+                padding: 0 1.5rem ;
+                transform: translateY(-30%);
+            }
+          }
+        }
+
+        .left__content {
+          text-align: right;
+        }
+      }
     }
   }
 }
